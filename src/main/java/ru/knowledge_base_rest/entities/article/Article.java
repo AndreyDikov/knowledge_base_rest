@@ -1,21 +1,19 @@
-package ru.knowledge_base_rest.entities.user;
+package ru.knowledge_base_rest.entities.article;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.knowledge_base_rest.entities.article.Article;
-
-import java.util.List;
+import ru.knowledge_base_rest.entities.user.User;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "articles")
+public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,14 +21,17 @@ public class User {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
             CascadeType.REFRESH, CascadeType.MERGE})
-    @JoinColumn(name = "post_id")
-    private Post postId;
+    @JoinColumn(name = "author_id")
+    private User authorId;
+
+    @Enumerated(EnumType.STRING)
+    private Status statusId;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
             CascadeType.REFRESH, CascadeType.MERGE})
-    @JoinColumn(name = "department_id")
-    private Department departmentId;
+    @JoinColumn(name = "type_id")
+    private ArticleType typeId;
 
-    @OneToMany(mappedBy = "authorId", cascade = CascadeType.ALL)
-    private List<Article> articles;
+    @Column(name = "text")
+    private String text;
 }

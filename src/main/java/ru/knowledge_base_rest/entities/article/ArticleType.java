@@ -1,4 +1,4 @@
-package ru.knowledge_base_rest.entities.user;
+package ru.knowledge_base_rest.entities.article;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,8 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "posts")
-public class Post {
+@Table(name = "article_types")
+public class ArticleType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +23,6 @@ public class Post {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
-    private List<User> users;
+    @OneToMany(mappedBy = "typeId", cascade = CascadeType.ALL)
+    private List<Article> articles;
 }
