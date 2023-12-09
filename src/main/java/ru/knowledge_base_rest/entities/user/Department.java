@@ -1,10 +1,7 @@
 package ru.knowledge_base_rest.entities.user;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,9 +9,10 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Entity
-@Table(name = "posts")
-public class Post {
+@Table(name = "departments")
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +21,7 @@ public class Post {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "departmentId", cascade = CascadeType.ALL)
     //@Transient
     private List<User> users;
 }

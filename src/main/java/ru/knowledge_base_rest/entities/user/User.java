@@ -22,4 +22,9 @@ public class User {
             CascadeType.REFRESH, CascadeType.MERGE})
     @JoinColumn(name = "post_id")
     private Post postId;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
+            CascadeType.REFRESH, CascadeType.MERGE})
+    @JoinColumn(name = "department_id")
+    private Department departmentId;
 }
