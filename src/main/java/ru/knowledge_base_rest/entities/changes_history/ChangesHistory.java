@@ -33,7 +33,10 @@ public class ChangesHistory {
     private Article articleId;
 
     @Column(name = "version")
-    private Date version;
+    private Integer version;
+
+    @Column(name = "date")
+    private Date date;
 
     @Column(name = "new_text")
     private String newText;
