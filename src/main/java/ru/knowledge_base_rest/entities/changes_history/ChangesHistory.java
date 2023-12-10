@@ -8,6 +8,8 @@ import lombok.Setter;
 import ru.knowledge_base_rest.entities.article.Article;
 import ru.knowledge_base_rest.entities.user.User;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,7 +33,7 @@ public class ChangesHistory {
     private Article articleId;
 
     @Column(name = "version")
-    private Integer version;
+    private Date version;
 
     @Column(name = "new_text")
     private String newText;

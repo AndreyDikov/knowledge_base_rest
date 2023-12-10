@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.knowledge_base_rest.entities.changes_history.ChangesHistory;
 import ru.knowledge_base_rest.entities.user.User;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,4 +37,7 @@ public class Article {
 
     @Column(name = "text")
     private String text;
+
+    @OneToMany(mappedBy = "articleId", cascade = CascadeType.ALL)
+    private List<ChangesHistory> history;
 }

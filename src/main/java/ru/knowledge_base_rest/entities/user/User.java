@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.knowledge_base_rest.entities.article.Article;
+import ru.knowledge_base_rest.entities.changes_history.ChangesHistory;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -33,4 +35,13 @@ public class User {
 
     @OneToMany(mappedBy = "authorId", cascade = CascadeType.ALL)
     private List<Article> articles;
+
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    private List<ChangesHistory> history;
+
+    @Column(name = "date_employment")
+    private Date dateEmployment;
+
+    @Column(name = "date_dismissal")
+    private Date dateDismissal;
 }
