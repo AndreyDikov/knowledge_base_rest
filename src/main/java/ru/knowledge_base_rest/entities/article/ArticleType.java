@@ -1,5 +1,6 @@
 package ru.knowledge_base_rest.entities.article;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class ArticleType {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "typeId", cascade = CascadeType.ALL)
     private List<Article> articles;
 }

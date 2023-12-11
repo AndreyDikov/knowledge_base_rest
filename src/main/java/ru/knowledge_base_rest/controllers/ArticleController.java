@@ -19,7 +19,7 @@ public class ArticleController {
     }
 
     @PostMapping("/save")
-    public Article saveArticle(Article article) {
+    public Article saveArticle(@RequestBody Article article) {
         return articleService.saveArticle(article);
     }
 
@@ -33,13 +33,13 @@ public class ArticleController {
         return articleService.showAllArticles();
     }
 
-    @PostMapping("/edit/{id}")
-    public Article updateArticle(@PathVariable("id") Long id, Article article) {
+    @PutMapping("/edit/{id}")
+    public Article updateArticle(@PathVariable("id") Long id, @RequestBody Article article) {
         return articleService.updateArticle(article);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteArticle(@PathVariable("id") Long id) {
-        articleService.deleteArticleById(id);
+    public boolean deleteArticle(@PathVariable("id") Long id) {
+        return articleService.deleteArticleById(id);
     }
 }

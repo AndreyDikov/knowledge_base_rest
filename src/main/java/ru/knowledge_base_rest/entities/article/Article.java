@@ -1,5 +1,6 @@
 package ru.knowledge_base_rest.entities.article;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,6 +42,9 @@ public class Article {
     @Column(name = "text")
     private String text;
 
-    @OneToMany(mappedBy = "articleId", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "articleId",
+            cascade = {CascadeType.PERSIST, CascadeType.DETACH,
+                    CascadeType.REFRESH, CascadeType.MERGE})
     private List<ChangesHistory> history;
 }

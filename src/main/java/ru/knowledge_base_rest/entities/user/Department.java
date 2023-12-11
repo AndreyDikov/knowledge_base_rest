@@ -1,5 +1,6 @@
 package ru.knowledge_base_rest.entities.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,7 +22,7 @@ public class Department {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "departmentId", cascade = CascadeType.ALL)
-    //@Transient
     private List<User> users;
 }

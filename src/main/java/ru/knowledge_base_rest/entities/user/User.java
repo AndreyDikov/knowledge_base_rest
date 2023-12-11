@@ -1,5 +1,6 @@
 package ru.knowledge_base_rest.entities.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,9 +34,11 @@ public class User {
     @JoinColumn(name = "department_id")
     private Department departmentId;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "authorId", cascade = CascadeType.ALL)
     private List<Article> articles;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private List<ChangesHistory> history;
 
