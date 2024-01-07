@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.knowledge_base_rest.entities.article.Article;
 import ru.knowledge_base_rest.entities.changes_history.ChangesHistory;
-import ru.knowledge_base_rest.entities.user.User;
+import ru.knowledge_base_rest.entities.user.AppUser;
 import ru.knowledge_base_rest.repositories.ArticleRepository;
 import ru.knowledge_base_rest.repositories.ChangesHistoryRepository;
-import ru.knowledge_base_rest.repositories.UserRepository;
+import ru.knowledge_base_rest.repositories.appUser.AppUserRepository;
 
 import java.util.Calendar;
 import java.util.List;
@@ -18,12 +18,12 @@ public class ArticleService {
 
     private final ArticleRepository articleRepository;
     private final ChangesHistoryRepository changesHistoryRepository;
-    private final UserRepository userRepository;
+    private final AppUserRepository userRepository;
 
     @Autowired
     public ArticleService(ArticleRepository articleRepository,
                           ChangesHistoryRepository changesHistoryRepository,
-                          UserRepository userRepository) {
+                          AppUserRepository userRepository) {
         this.articleRepository = articleRepository;
         this.changesHistoryRepository = changesHistoryRepository;
         this.userRepository = userRepository;
@@ -40,7 +40,7 @@ public class ArticleService {
     public Article saveArticle(Article article) {
         if (!articleRepository.existsByName(article.getName())) {
             ChangesHistory changesHistory = new ChangesHistory();
-            changesHistory.setUserId(article.getAuthorId());
+            changesHistory.setAppUserId(article.getAuthorId());
             changesHistory.setArticleId(article);
             changesHistory.setVersion(1);
             changesHistory.setDate(Calendar.getInstance().getTime());
@@ -57,7 +57,7 @@ public class ArticleService {
         if (optional.isPresent()) {
             Article article = optional.get();
             ChangesHistory changesHistory = new ChangesHistory();
-            changesHistory.setUserId(getUserConnectedToDB(temporaryArticle.getAuthorId()));
+            changesHistory.setAppUserId(getUserConnectedToDB(temporaryArticle.getAuthorId()));
             changesHistory.setArticleId(article);
             changesHistory.setVersion(article.getHistory().size() + 1);
             changesHistory.setDate(Calendar.getInstance().getTime());
@@ -72,20 +72,20 @@ public class ArticleService {
         return null;
     }
 
-    private User getUserConnectedToDB(User user) {
-        Optional<User> optional = userRepository
-                .findById(user.getId());
+    private AppUser getUserConnectedToDB(AppUser appUser) {
+        Optional<AppUser> optional = userRepository
+                .findById(appUser.getId());
         if (optional.isPresent()) {
-            User userFromDb = optional.get();
-            userFromDb.setPostId(user.getPostId());
-            userFromDb.setDepartmentId(user.getDepartmentId());
-            userFromDb.setDateEmployment(user.getDateEmployment());
-            userFromDb.setDateDismissal(user.getDateDismissal());
-            userRepository.save(userFromDb);
-            return userFromDb;
+            AppUser appUserFromDb = optional.get();
+            appUserFromDb.setPostId(appUser.getPostId());
+            appUserFromDb.setDepartmentId(appUser.getDepartmentId());
+            appUserFromDb.setDateEmployment(appUser.getDateEmployment());
+            appUserFromDb.setDateDismissal(appUser.getDateDismissal());
+            userRepository.save(appUserFromDb);
+            return appUserFromDb;
         }
-        userRepository.save(user);
-        return user;
+        userRepository.save(appUser);
+        return appUser;
     }
 
     public boolean deleteArticleById(Long id) {

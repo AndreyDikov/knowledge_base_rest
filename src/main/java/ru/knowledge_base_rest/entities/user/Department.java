@@ -24,5 +24,5 @@ public class Department {
 
     @JsonIgnore
     @OneToMany(mappedBy = "departmentId", cascade = CascadeType.ALL)
-    private List<User> users;
+    private List<AppUser> appUsers;
 }

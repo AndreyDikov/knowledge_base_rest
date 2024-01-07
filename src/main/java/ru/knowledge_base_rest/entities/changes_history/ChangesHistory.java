@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.knowledge_base_rest.entities.article.Article;
-import ru.knowledge_base_rest.entities.user.User;
+import ru.knowledge_base_rest.entities.user.AppUser;
 
 import java.util.Date;
 
@@ -25,7 +25,7 @@ public class ChangesHistory {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
             CascadeType.REFRESH, CascadeType.MERGE})
     @JoinColumn(name = "user_id")
-    private User userId;
+    private AppUser appUserId;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
             CascadeType.REFRESH, CascadeType.MERGE})

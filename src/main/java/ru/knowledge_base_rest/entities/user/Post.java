@@ -26,5 +26,5 @@ public class Post {
 
     @JsonIgnore
     @OneToMany(mappedBy = "postId", cascade = CascadeType.ALL)
-    private List<User> users;
+    private List<AppUser> appUsers;
 }

@@ -8,17 +8,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.knowledge_base_rest.entities.article.Article;
 import ru.knowledge_base_rest.entities.changes_history.ChangesHistory;
+import ru.knowledge_base_rest.entities.security.SecurityUser;
 
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Сущность, отвечающая за данные пользователя для отображения в таблицах.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +43,7 @@ public class User {
     private List<Article> articles;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "appUserId", cascade = CascadeType.ALL)
     private List<ChangesHistory> history;
 
     @Column(name = "date_employment")
@@ -47,4 +51,8 @@ public class User {
 
     @Column(name = "date_dismissal")
     private Date dateDismissal;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "security_id")
+    private SecurityUser securityUser;
 }

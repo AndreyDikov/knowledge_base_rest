@@ -1,3 +1,14 @@
+insert into security_user (username, password, active)
+values ('user', '123', true),
+       ('admin', '123', true),
+       ('userAndAdmin', '123', true);
+
+insert into user_role
+values (1, 'BASIC_STATE'),
+       (2, 'ADMINISTRATION_STATE'),
+       (3, 'BASIC_STATE'),
+       (3, 'ADMINISTRATION_STATE');
+
 insert into departments (name) values ('Департамент нижнего интернета 1');
 
 insert into posts (name) values ('Разумист');

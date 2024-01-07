@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.knowledge_base_rest.entities.changes_history.ChangesHistory;
-import ru.knowledge_base_rest.entities.user.User;
+import ru.knowledge_base_rest.entities.user.AppUser;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class Article {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
             CascadeType.REFRESH, CascadeType.MERGE})
     @JoinColumn(name = "author_id")
-    private User authorId;
+    private AppUser authorId;
 
     @Enumerated(EnumType.STRING)
     private Status statusId;
