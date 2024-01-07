@@ -12,8 +12,7 @@ public enum Role {
 
     ADMINISTRATOR("Администратор"),
     EDITOR("Редактор"),
-    REGISTERED_USER("Зарегистрированный пользователь"),
-    UNREGISTERED_USER("Незарегистрированный пользователь");
+    REGISTERED_USER("Зарегистрированный пользователь");
 
     private final String name;
 }

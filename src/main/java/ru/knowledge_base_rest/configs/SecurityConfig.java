@@ -29,6 +29,7 @@ public class SecurityConfig {
     /**
      * Фильтры для запросов.
      * Тут указывается к чему и с какой ролью имеет доступ пользователь
+     *
      * @param http
      * @throws Exception
      */
@@ -36,12 +37,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/registration", "/login", "/")
+                .requestMatchers("/login", "/", "/sections")
                 .permitAll()
-//                .requestMatchers("/users/**", "/works/**")
-//                .hasAnyAuthority("ROLE_BASIC_STATE")
-//                .requestMatchers("/userToWorks/**")
-//                .hasAnyAuthority("ROLE_ADMINISTRATION_STATE")
+                .requestMatchers("/super-admin-page/**", "/registration")
+                .hasAnyAuthority("ROLE_ADMINISTRATOR")
+                .requestMatchers("/super-admin-and-editor-page/**")
+                .hasAnyAuthority("ROLE_ADMINISTRATOR", "ROLE_EDITOR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

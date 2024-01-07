@@ -8,7 +8,16 @@ public class MainPageController {
 
     @GetMapping("/")
     public String getMainPage() {
-        // todo добавить вию для главной страницы
-        return "/index";
+        return "index";
+    }
+
+    @GetMapping("/super-admin-page")
+    public String getSuperAdminPage() {
+        return "/super-admin-page";
+    }
+
+    @GetMapping("/super-admin-and-editor-page")
+    public String getSuperAdminAndEditorPage() {
+        return "/super-admin-and-editor-page";
     }
 }
