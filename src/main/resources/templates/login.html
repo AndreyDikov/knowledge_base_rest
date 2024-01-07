@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>База знаний Брусника</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        .header {
+            background-color: black;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: white;
+            margin: 0;
+        }
+
+        .main {
+            background-color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .login-form {
+            width: 200px;
+            padding: 200px;
+            border-radius: 100px;
+            text-align: center;
+            background-image: url('/images/circle.png');
+            background-size: 100% 100%;
+        }
+
+        .login-form h2 {
+            margin-top: 0;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 100px;
+            background-color: #f2f2f2;
+            height: 30px;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 8px;
+            background-color: #f2f2f2;
+            color: black;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            margin-top: 20px;
+            height: 30px;
+        }
+
+        .header img {
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>База знаний Брусника</h1>
+    <img src="/images/logo.png">
+</div>
+<div class="main">
+    <div class="login-form">
+        <h2>Личный кабинет</h2>
+        <input type="text" placeholder="Логин">
+        <input type="password" placeholder="Пароль">
+        <button>Войти</button>
+    </div>
+</div>
+</body>
+</html>

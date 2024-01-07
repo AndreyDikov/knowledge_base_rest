@@ -9,12 +9,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/articles")
-public class ArticleController {
+public class ArticleRestController {
 
     private final ArticleService articleService;
 
     @Autowired
-    public ArticleController(ArticleService articleService) {
+    public ArticleRestController(ArticleService articleService) {
         this.articleService = articleService;
     }
 
